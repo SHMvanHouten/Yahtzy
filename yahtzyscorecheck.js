@@ -1,6 +1,6 @@
 
-function YahtzyScoreCheck(die0, die1 ,die2, die3, die4) {
-    var dice = [die0, die1, die2, die3, die4].sort();
+function YahtzyScoreCheck() {
+    var dice;
 
 	var totalScoreBottomHalf = 0;
 	
@@ -108,6 +108,9 @@ function YahtzyScoreCheck(die0, die1 ,die2, die3, die4) {
 	
 	this.getScoreBottomHalf = function() {
 		return totalScoreBottomHalf;
+	};
+	this.inputDice = function(diceInput){
+	    dice = diceInput.sort();
 	};
 };
 

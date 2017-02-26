@@ -1,12 +1,12 @@
-function YahtzeeGame(names, visualiser, scoreChecker){
+function YahtzyGame(names, visualiser, scoreChecker){
     var dice = []
 
+    this.selectInput = function(choice){
+        scoreChecker.inputDice(dice)
+        return scoreChecker.getScoreAsLargeStraight(dice);
+    };
+    this.rollDice = function(input){
+         dice = input;
+    };
 }
 
-YahtzeeGame.prototype.rollDice = function(){
-     dice = [1,2,3,4,5]
-};
-YahtzeeGame.prototype.selectInput = function(){
-    return scoreChecker.getScoreAsFullHouse();
-
-};
