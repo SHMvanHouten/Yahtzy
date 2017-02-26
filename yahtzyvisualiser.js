@@ -31,19 +31,9 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     };
     document.getElementsByTagName("body")[0].appendChild(playingField)
 };
-//Visualiser.prototype.createScoreboard = function(players){
-//    var scoreboard = document.createElement("table");
-//    scoreboard.class = "scoreboard";
-//    var body = document.getElementsByTagName("body")[0];
-//    for(var i = 0; i<players.length;i++){
-//        var row = scoreboard.insertRow(-1);
-//        var cellForName = row.insertCell();
-//        cellForName.innerHTML = players[i].getName();
-//        cellForName.class = "name";
-//        var cellForScore = row.insertCell();
-//        cellForScore.innerHTML = players[i].getScore();
-//        cellForScore.id = "playerscore" + i;
-//        cellForScore.class = "score";
-//    };
-//    body.insertBefore(scoreboard,body.firstChild);
-//};
+Visualiser.prototype.inputDice = function(dice){
+    for (let i = 0; i<dice.length; i++){
+        document.getElementById("die" + i).innerHTML = dice[i];
+    }
+
+}

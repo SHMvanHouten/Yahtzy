@@ -9,7 +9,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
         input = [1,2,3,4,5];
 //         dice = input;
         scoreChecker.inputDice(input);
-//        visualiser.inputDice(input);
+        visualiser.inputDice(input);
     };
 
     this.getScoreAsThreeOfAKind = function(){
