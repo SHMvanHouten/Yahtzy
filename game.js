@@ -1,4 +1,4 @@
-function YahtzyGame(names, visualiser, scoreChecker){
+function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
     var dice = []
 //    var scoreTypes = ["Ones","Twos","Threes","Fours","Fives","Sixes","ThreeOfAKind","FourOfAKind","Yahtzy","FullHouse","SmallStraight","LargeStraight","Chance"]
     this.selectInput = function(choice){
@@ -75,4 +75,6 @@ function YahtzyGame(names, visualiser, scoreChecker){
     this.checkForIncorrectInput = function() {
          return scoreChecker.checkForWrongNumbers();
     };
+    console.log(scoreTypes);
+    visualiser.createPlayingField(scoreTypes);
 }

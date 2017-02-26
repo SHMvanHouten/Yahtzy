@@ -1,10 +1,12 @@
 describe("yahtzyGame", function(){
     beforeEach(function(){
         function newGame(){
-            var playerNames = ["player1", "player2"]
-            var visualiser = new Visualiser;
+            var playerNames = ["player1", "player2"];
+            var scoreTypes = ["Ones","Twos","Threes","Fours","Fives","Sixes","ThreeOfAKind","FourOfAKind","Yahtzy","FullHouse","SmallStraight","LargeStraight","Chance"];
+            var visualiser = new Visualiser();
             var scoreChecker = new YahtzyScoreCheck();
-            return new YahtzyGame(playerNames, visualiser, scoreChecker);
+            return new YahtzyGame(playerNames, visualiser, scoreChecker, scoreTypes);
+
         };
         game = new newGame;
     })
