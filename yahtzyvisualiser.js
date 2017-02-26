@@ -20,14 +20,21 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     var playingField = document.createElement("table");
     playingField.class = "table";
     for(let i = 0; i<scoreTypes.length; i++){
-        var row = playingField.insertRow(-1);
-        var cellForScoreType = row.insertCell();
+//        var row = playingField.insertRow(-1);
+        var row = document.createElement("tr");
+        row.id = "row"+i;
+        row.className = "success";
+//        var cellForScoreType = row.insertCell();
+        var cellForScoreType = document.createElement("th");
         cellForScoreType.innerHTML = scoreTypes[i];
         cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
-        var cellForScore = row.insertCell();
+        row.appendChild(cellForScoreType);
+//        var cellForScore = row.insertCell();
+        var cellForScore = document.createElement("th");
         cellForScore.innerHTML = 0;
         cellForScore.id ="score" + i;
-
+        row.appendChild(cellForScore);
+        playingField.appendChild(row);
     };
     document.getElementsByTagName("body")[0].appendChild(playingField)
 };
@@ -39,10 +46,11 @@ Visualiser.prototype.inputDice = function(dice){
 Visualiser.prototype.addScore = function(typeIndex, score){
     var scoreField = document.getElementById("score"+typeIndex)
     scoreField.innerHTML = score;
+    var row = document.getElementById("row"+typeIndex);
     if (score>0){
-        scoreField.className = "success"
+        row.style.backgroundColor = "#4BE23A"
     }
     else{
-        scoreField.className = "danger"
+        row.style.backgroundColor = "#F3232A"
     }
 }
