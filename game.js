@@ -96,13 +96,14 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
          return scoreChecker.giveAddedUpXs(5);
     };
 
-    this.getScore = function(asInput){
-        if(scoreTypeChecker[asInput]&&hasNotChosenInput){
-            console.log(scoreTypes[asInput]);
-            scoreTypeChecker[asInput]=false;
+    this.getScore = function(typeIndex){
+        if(scoreTypeChecker[typeIndex]&&hasNotChosenInput){
+            console.log(scoreTypes[typeIndex]);
+            scoreTypeChecker[typeIndex]=false;
             hasNotChosenInput = false;
             hasRolled = false;
-            return this["getScoreAs"+scoreTypes[asInput]]();
+            var score = this["getScoreAs"+scoreTypes[typeIndex]]();
+            return visualiser.addScore(typeIndex, score);
         }
     };
 

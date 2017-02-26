@@ -26,7 +26,7 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
         cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
         var cellForScore = row.insertCell();
         cellForScore.innerHTML = 0;
-        cellForScore.id ="scorei";
+        cellForScore.id ="score" + i;
 
     };
     document.getElementsByTagName("body")[0].appendChild(playingField)
@@ -36,3 +36,13 @@ Visualiser.prototype.inputDice = function(dice){
         document.getElementById("die" + i).src = "img/"+(dice[i])+".png";
     };
 };
+Visualiser.prototype.addScore = function(typeIndex, score){
+    var scoreField = document.getElementById("score"+typeIndex)
+    scoreField.innerHTML = score;
+    if (score>0){
+        scoreField.className = "success"
+    }
+    else{
+        scoreField.className = "danger"
+    }
+}
