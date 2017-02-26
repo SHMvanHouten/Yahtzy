@@ -1,22 +1,35 @@
 
 function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
+    var scoreTypeChecker = [];
+    var hasNotChosenInput = true;
+    var hasRolled = false;
+
+    function scoreTypeCheckerFiller(){
+        for(var i = 0; i < scoreTypes.length; i++){
+            scoreTypeChecker.push(true);
+        };
+    };
+
     var getRandomInt = function(max,min){
       return Math.floor(Math.random() * max) + min;
     };
 
-    this.selectInput = function(choice){
-        scoreChecker.inputDice(dice);
-        return this["getScoreAs"+choice]();
-    };
+//    this.selectInput = function(choice){
+//        scoreChecker.inputDice(dice);
+//        return this["getScoreAs"+choice]();
+//    };
 
     this.rollDice = function(){
+        if(hasRolled){return};
         var dice = [0,0,0,0,0]
         for(var i = 0; i < dice.length; i++){
             dice[i] = getRandomInt(6,1);
         };
         scoreChecker.inputDice(dice);
         visualiser.inputDice(dice);
+        hasNotChosenInput = true;
+        hasRolled = true;
     };
 
     this.getScoreAsThreeOfAKind = function(){
@@ -82,9 +95,17 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
     this.getScoreAsSixes = function() {
          return scoreChecker.giveAddedUpXs(5);
     };
-    this.checkForIncorrectInput = function() {
-         return scoreChecker.checkForWrongNumbers();
+
+    this.getScore = function(asInput){
+        if(scoreTypeChecker[asInput]&&hasNotChosenInput){
+            console.log(scoreTypes[asInput]);
+            scoreTypeChecker[asInput]=false;
+            hasNotChosenInput = false;
+            hasRolled = false;
+            return this["getScoreAs"+scoreTypes[asInput]]();
+        }
     };
-    console.log(scoreTypes);
+
+    scoreTypeCheckerFiller();
     visualiser.createPlayingField(scoreTypes);
 }

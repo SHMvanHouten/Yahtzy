@@ -23,7 +23,7 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
         var row = playingField.insertRow(-1);
         var cellForScoreType = row.insertCell();
         cellForScoreType.innerHTML = scoreTypes[i];
-        cellForScoreType.addEventListener("click", function(){game["getScoreAs"+scoreTypes[i]]()},false);
+        cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
         var cellForScore = row.insertCell();
         cellForScore.innerHTML = 0;
         cellForScore.id ="scorei";
