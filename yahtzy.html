@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="yahtzyscorecheck.js"></script>
+    <script src="yahtzyvisualiser.js"></script>
+    <script src="game.js"></script>
+    <script>
+        function newGame(){
+            var playerNames = [player1, player2]
+            var visualiser = new Visualiser;
+            var scoreChecker = new YahtzyScoreCheck();
+            return new YahtzyGame(playerNames, visualiser, scoreChecker);
+        };
+
+    </script>
+</head>
+<body onload="game = newGame()">
+
+</body>
+</html>
