@@ -1,12 +1,15 @@
 function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
-    var dice = []
-//    var scoreTypes = ["Ones","Twos","Threes","Fours","Fives","Sixes","ThreeOfAKind","FourOfAKind","Yahtzy","FullHouse","SmallStraight","LargeStraight","Chance"]
+
     this.selectInput = function(choice){
         scoreChecker.inputDice(dice);
         return this["getScoreAs"+choice]();
     };
+
     this.rollDice = function(input){
-         dice = input;
+        input = [1,2,3,4,5];
+//         dice = input;
+        scoreChecker.inputDice(input);
+//        visualiser.inputDice(input);
     };
 
     this.getScoreAsThreeOfAKind = function(){

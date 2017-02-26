@@ -3,7 +3,14 @@ function Visualiser(){
 
 };
 Visualiser.prototype.createPlayingField = function(scoreTypes){
-//    var diceField =  document.createElement("")
+    var diceField =  document.createElement("div");
+    var rollButton = document.createElement("button");
+    rollButton.className = "btn btn-success";
+    rollButton.innerHTML = "Roll Dice";
+    rollButton.addEventListener("click", function(){game.rollDice();} ,false)
+    diceField.appendChild(rollButton);
+    document.getElementsByTagName("body")[0].appendChild(diceField);
+
     var playingField = document.createElement("table");
     playingField.class = "table";
     for(let i = 0; i<scoreTypes.length; i++){
