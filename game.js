@@ -1,15 +1,22 @@
+
 function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
+
+    var getRandomInt = function(max,min){
+      return Math.floor(Math.random() * max) + min;
+    };
 
     this.selectInput = function(choice){
         scoreChecker.inputDice(dice);
         return this["getScoreAs"+choice]();
     };
 
-    this.rollDice = function(input){
-        input = [1,2,3,4,5];
-//         dice = input;
-        scoreChecker.inputDice(input);
-        visualiser.inputDice(input);
+    this.rollDice = function(){
+        var dice = [0,0,0,0,0]
+        for(var i = 0; i < dice.length; i++){
+            dice[i] = getRandomInt(6,1);
+        };
+        scoreChecker.inputDice(dice);
+        visualiser.inputDice(dice);
     };
 
     this.getScoreAsThreeOfAKind = function(){

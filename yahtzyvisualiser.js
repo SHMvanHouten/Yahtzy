@@ -34,6 +34,5 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
 Visualiser.prototype.inputDice = function(dice){
     for (let i = 0; i<dice.length; i++){
         document.getElementById("die" + i).innerHTML = dice[i];
-    }
-
-}
+    };
+};
