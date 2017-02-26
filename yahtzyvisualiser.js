@@ -7,8 +7,14 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     var rollButton = document.createElement("button");
     rollButton.className = "btn btn-success";
     rollButton.innerHTML = "Roll Dice";
-    rollButton.addEventListener("click", function(){game.rollDice();} ,false)
+    rollButton.addEventListener("click", function(){game.rollDice();} ,false);
     diceField.appendChild(rollButton);
+    for (let i = 0; i< 5; i++){
+        var die = document.createElement("button");
+        die.className = "btn btn-info";
+        die.id = "die" + i;
+        diceField.appendChild(die);
+    };
     document.getElementsByTagName("body")[0].appendChild(diceField);
 
     var playingField = document.createElement("table");
