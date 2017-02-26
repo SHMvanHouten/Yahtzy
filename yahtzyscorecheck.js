@@ -1,6 +1,6 @@
 
 function YahtzyScoreCheck() {
-    var dice;
+    var dice = [1,2,3,4,5];
 
 	var totalScoreBottomHalf = 0;
 	

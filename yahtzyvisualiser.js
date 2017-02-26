@@ -3,13 +3,17 @@ function Visualiser(){
 
 };
 Visualiser.prototype.createPlayingField = function(scoreTypes){
+//    var diceField =  document.createElement("")
     var playingField = document.createElement("table");
     playingField.class = "table";
-    for(var i = 0; i<scoreTypes.length; i++){
+    for(let i = 0; i<scoreTypes.length; i++){
         var row = playingField.insertRow(-1);
         var cellForScoreType = row.insertCell();
         cellForScoreType.innerHTML = scoreTypes[i];
-        var cellForScore = row.incertCell();
+        cellForScoreType.addEventListener("click", function(){game["getScoreAs"+scoreTypes[i]]()},false);
+        var cellForScore = row.insertCell();
+        cellForScore.innerHTML = 0;
+        cellForScore.id ="scorei";
 
     };
     document.getElementsByTagName("body")[0].appendChild(playingField)
