@@ -10,8 +10,8 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     rollButton.addEventListener("click", function(){game.rollDice();} ,false);
     diceField.appendChild(rollButton);
     for (let i = 0; i< 5; i++){
-        var die = document.createElement("button");
-        die.className = "btn btn-info";
+        var die = document.createElement("img");
+        die.src = "img/empty.png";
         die.id = "die" + i;
         diceField.appendChild(die);
     };
@@ -33,6 +33,6 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
 };
 Visualiser.prototype.inputDice = function(dice){
     for (let i = 0; i<dice.length; i++){
-        document.getElementById("die" + i).innerHTML = dice[i];
+        document.getElementById("die" + i).src = "img/"+(dice[i])+".png";
     };
 };
