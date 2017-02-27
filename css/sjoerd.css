@@ -1,3 +1,6 @@
 .success {
     background-color: #dff0d8;
 }
+.img-responsive{
+    float:right;
+}
