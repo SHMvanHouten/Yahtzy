@@ -5,6 +5,7 @@ function Visualiser(){
 Visualiser.prototype.createPlayingField = function(scoreTypes){
     var diceField =  document.createElement("div");
     var rollButton = document.createElement("button");
+    rollButton.id = "rollButton";
     rollButton.className = "btn btn-success";
     rollButton.innerHTML = "Roll Dice";
     rollButton.addEventListener("click", function(){game.rollDice();} ,false);
@@ -55,7 +56,15 @@ Visualiser.prototype.addScore = function(typeIndex, score){
     else{
         row.style.backgroundColor = "#F3232A"
     }
-}
+};
 Visualiser.prototype.changeDie = function (index, value){
     document.getElementById("die" + index).src = "img/"+(value)+".png";
-}
+};
+Visualiser.prototype.addReRollButton = function(){
+    var rollButton = document.getElementById("rollButton");
+    rollButton.innerHTML = "Re-Roll selected";
+    rollButton.className = "btn btn-warning";
+};
+Visualiser.prototype.removeReRollButton = function(){
+
+};

@@ -24,7 +24,8 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 //    };
 
     this.rollDice = function(){
-        if(hasRolled){return};
+        if(reRollPhase){return this.reRoll();}
+        else if(hasRolled){return};
         for(var i = 0; i < dice.length; i++){
             //6 and 1 being the highest and lowest possible die value
             dice[i] = getRandomInt(6,1);
@@ -33,7 +34,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
         visualiser.inputDice(dice);
         hasRolled = true;
         reRollPhase = true;
-//        visualiser.addRerollButton();
+        visualiser.addReRollButton();
     };
 
     this.selectForReRoll = function(i){
@@ -53,7 +54,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
         hasNotChosenInput = true;
         reRollPhase = false;
         reRollDice=[];
-//        visualiser.removeRerollButton();
+        visualiser.removeReRollButton();
     };
 
     this.getScoreAsThreeOfAKind = function(){
