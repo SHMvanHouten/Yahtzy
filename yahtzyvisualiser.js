@@ -67,6 +67,11 @@ Visualiser.prototype.addReRollButton = function(){
 };
 Visualiser.prototype.removeReRollButton = function(){
     var rollButton = document.getElementById("rollButton");
+    rollButton.className = "btn btn-danger";
+    rollButton.innerHTML = "Select Score";
+};
+Visualiser.prototype.changeBackToRollButton = function(){
+    var rollButton = document.getElementById("rollButton");
     rollButton.className = "btn btn-success";
     rollButton.innerHTML = "Roll Dice";
-};
+}

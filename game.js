@@ -43,7 +43,6 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
         reRollDice.push(i);
 //        visualiser.selectDieForReRoll(i);
-        console.log(i + " is selected for reroll")
     };
     this.reRoll = function(){
         for(var i = 0; i < reRollDice.length; i++){
@@ -128,6 +127,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
             hasNotChosenInput = false;
             hasRolled = false;
             var score = this["getScoreAs"+scoreTypes[typeIndex]]();
+            visualiser.changeBackToRollButton();
             return visualiser.addScore(typeIndex, score);
         }
     };
