@@ -122,7 +122,6 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
     this.getScore = function(typeIndex){
         if(scoreTypeChecker[typeIndex]&&hasNotChosenInput){
-            console.log(scoreTypes[typeIndex]);
             scoreTypeChecker[typeIndex]=false;
             hasNotChosenInput = false;
             hasRolled = false;
