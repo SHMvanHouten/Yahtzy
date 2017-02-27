@@ -66,5 +66,7 @@ Visualiser.prototype.addReRollButton = function(){
     rollButton.className = "btn btn-warning";
 };
 Visualiser.prototype.removeReRollButton = function(){
-
+    var rollButton = document.getElementById("rollButton");
+    rollButton.className = "btn btn-success";
+    rollButton.innerHTML = "Roll Dice";
 };
