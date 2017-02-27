@@ -14,6 +14,7 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
         die.src = "img/empty.png";
         die.id = "die" + i;
         diceField.appendChild(die);
+        die.addEventListener("click",function(){game.selectForReRoll(i);},false)
     };
     document.getElementsByTagName("body")[0].appendChild(diceField);
 
@@ -40,7 +41,8 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
 };
 Visualiser.prototype.inputDice = function(dice){
     for (let i = 0; i<dice.length; i++){
-        document.getElementById("die" + i).src = "img/"+(dice[i])+".png";
+//        document.getElementById("die" + i).src = "img/"+(dice[i])+".png";
+        this.changeDie(i, dice[i]);
     };
 };
 Visualiser.prototype.addScore = function(typeIndex, score){
@@ -53,4 +55,7 @@ Visualiser.prototype.addScore = function(typeIndex, score){
     else{
         row.style.backgroundColor = "#F3232A"
     }
+}
+Visualiser.prototype.changeDie = function (index, value){
+    document.getElementById("die" + index).src = "img/"+(value)+".png";
 }

@@ -2,8 +2,11 @@
 function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
     var scoreTypeChecker = [];
-    var hasNotChosenInput = true;
+    var dice = [0,0,0,0,0];
+    var hasNotChosenInput = false;
     var hasRolled = false;
+    var reRollPhase = false;
+    var reRollDice = [];
 
     function scoreTypeCheckerFiller(){
         for(var i = 0; i < scoreTypes.length; i++){
@@ -22,14 +25,35 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
     this.rollDice = function(){
         if(hasRolled){return};
-        var dice = [0,0,0,0,0]
         for(var i = 0; i < dice.length; i++){
+            //6 and 1 being the highest and lowest possible die value
             dice[i] = getRandomInt(6,1);
         };
         scoreChecker.inputDice(dice);
         visualiser.inputDice(dice);
-        hasNotChosenInput = true;
         hasRolled = true;
+        reRollPhase = true;
+//        visualiser.addRerollButton();
+    };
+
+    this.selectForReRoll = function(i){
+        //if it's not the reRollPhase or the die has allready been chosen, return empty;
+        if (!reRollPhase || reRollDice.indexOf(i)>-1){return};
+
+        reRollDice.push(i);
+//        visualiser.selectDieForReRoll(i);
+        console.log(i + " is selected for reroll")
+    };
+    this.reRoll = function(){
+        for(var i = 0; i < reRollDice.length; i++){
+            var value = getRandomInt(6,1);
+            dice[reRollDice[i]] = value;
+            visualiser.changeDie(reRollDice[i], value);
+        };
+        hasNotChosenInput = true;
+        reRollPhase = false;
+        reRollDice=[];
+//        visualiser.removeRerollButton();
     };
 
     this.getScoreAsThreeOfAKind = function(){
