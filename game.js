@@ -9,6 +9,8 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
     var reRollDice = [];
     var totalScoreTop = 0;
     var totalScoreTopAfterBonus = 0;
+    var totalScoreBottom = 0;
+    var totalScore = 0;
 
     function scoreTypeCheckerFiller(){
         for(var i = 0; i < scoreTypes.length; i++){
@@ -32,15 +34,22 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
     var processScoreTop =  function(score){
         totalScoreTop += score;
         var bonus = 0;
-        if(totalScoreTop>63){
+        if(totalScoreTop>63 && bonus ===0){
             bonus = 35;
-            totalScoreTopAfterBonus = totalScoreTop + bonus;
+            totalScore += bonus;
         }
-        else{totalScoreTopAfterBonus = totalScoreTop;}
-        visualiser.updateScores(totalScoreTop, bonus, totalScoreTopAfterBonus);
+        totalScoreTopAfterBonus = totalScoreTop + bonus;
+        totalScore += score;
+        visualiser.updateScoresTop(totalScoreTop, bonus, totalScoreTopAfterBonus);
+        visualiser.updateTotalScore(totalScore);
     };
 
+
     var processScoreBottom =  function(score){
+        totalScoreBottom += score;
+        totalScore += score;
+        visualiser.updateScoreBottom(totalScoreBottom);
+        visualiser.updateTotalScore(totalScore);
 
     };
 

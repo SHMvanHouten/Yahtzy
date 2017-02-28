@@ -45,7 +45,7 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
 
     var topScoreRow = playingField.insertRow(-1);
     var cellForTopRowScoreDescription = topScoreRow.insertCell();
-    cellForTopRowScoreDescription.innerHTML = "TOTAL SCORE";
+    cellForTopRowScoreDescription.innerHTML = "TOTAL";
     var cellForTopRowScore = topScoreRow.insertCell();
     cellForTopRowScore.id = "cellForTopRowScore"
     cellForTopRowScore.innerHTML = 0;
@@ -60,10 +60,31 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     var cellForTotalScoreDescription = topTotalScoreRow.insertCell();
     cellForTotalScoreDescription.innerHTML = "TOTAL for top";
     var cellForTotalScore = topTotalScoreRow.insertCell();
-    cellForTotalScore.id = "cellForTotalScore"
+    cellForTotalScore.id = "cellForTotalScoreTop"
     cellForTotalScore.innerHTML = 0;
+
     this.getScoreTypeCells("bottom", playingField);
 
+    var topScoreAtBottom = playingField.insertRow(-1);
+    var cellForTopScoreAtBottomDescription = topScoreAtBottom.insertCell();
+    cellForTopScoreAtBottomDescription.innerHTML = "TOTAL top";
+    var cellForTopScoreAtBottom = topScoreAtBottom.insertCell();
+    cellForTopScoreAtBottom.id = "cellForTopScoreAtBottom"
+    cellForTopScoreAtBottom.innerHTML = 0;
+
+    var bottomScore = playingField.insertRow(-1);
+    var cellForBottomScoreDescription = bottomScore.insertCell();
+    cellForBottomScoreDescription.innerHTML = "TOTAL bottom";
+    var cellForBottomScore = bottomScore.insertCell();
+    cellForBottomScore.id = "cellForBottomScore";
+    cellForBottomScore.innerHTML = 0;
+
+    var totalScore = playingField.insertRow(-1);
+    var cellForTotalScoreDescription = totalScore.insertCell();
+    cellForTotalScoreDescription.innerHTML = "TOTAL SCORE";
+    var cellForTotalScore = totalScore.insertCell();
+    cellForTotalScore.id = "cellForTotalScore";
+    cellForTotalScore.innerHTML = 0;
 
     document.getElementsByTagName("body")[0].appendChild(playingField)
 };
@@ -105,9 +126,18 @@ Visualiser.prototype.changeBackToRollButton = function(){
 Visualiser.prototype.selectDieForReRoll = function(i, value){
     document.getElementById("die" + i).src = "img/"+(value)+"sel.png";
 };
-Visualiser.prototype.updateScores = function(totalScoreTop, bonus, totalScoreTopAfterBonus){
+Visualiser.prototype.updateScoresTop = function(totalScoreTop, bonus, totalScoreTopAfterBonus){
     document.getElementById("cellForTopRowScore").innerHTML = totalScoreTop;
     if(bonus>0){document.getElementById("cellForBonusScore").innerHTML = bonus;};
-    document.getElementById("cellForTotalScore").innerHTML = totalScoreTopAfterBonus;
+    document.getElementById("cellForTotalScoreTop").innerHTML = totalScoreTopAfterBonus;
+    document.getElementById("cellForTopScoreAtBottom").innerHTML = totalScoreTopAfterBonus;
 
+};
+
+Visualiser.prototype.updateScoreBottom = function(totalScoreBottom){
+    document.getElementById("cellForBottomScore").innerHTML = totalScoreBottom;
+};
+
+Visualiser.prototype.updateTotalScore = function(totalScore){
+    document.getElementById("cellForTotalScore").innerHTML = totalScore;
 }
