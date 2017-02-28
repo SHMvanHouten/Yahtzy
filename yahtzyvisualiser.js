@@ -9,21 +9,21 @@ function Visualiser(indexOfScoreTypesBottomScore, scoreTypes){
             whereToEnd = scoreTypes.length;
         }
         for(let i = whereToStart; i<whereToEnd; i++){
-        //        var row = playingField.insertRow(-1);
-                var row = document.createElement("tr");
+                var row = playingField.insertRow(-1);
+//                var row = document.createElement("tr");
                 row.id = "row"+i;
                 row.className = "success";
-        //        var cellForScoreType = row.insertCell();
-                var cellForScoreType = document.createElement("th");
+                row.addEventListener("click", function(){game.getScore(i)},false);
+                var cellForScoreType = row.insertCell();
+//                var cellForScoreType = document.createElement("th");
                 cellForScoreType.innerHTML = scoreTypes[i];
-                cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
-                row.appendChild(cellForScoreType);
-        //        var cellForScore = row.insertCell();
-                var cellForScore = document.createElement("th");
+//                row.appendChild(cellForScoreType);
+                var cellForScore = row.insertCell();
+//                var cellForScore = document.createElement("th");
                 cellForScore.innerHTML = 0;
                 cellForScore.id ="score" + i;
-                row.appendChild(cellForScore);
-                playingField.appendChild(row);
+//                row.appendChild(cellForScore);
+//                playingField.appendChild(row);
             };
     };
 
@@ -48,6 +48,17 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     var playingField = document.createElement("table");
     playingField.class = "table";
     this.getScoreTypeCells("top", playingField);
+
+    var topScoreRow = playingField.insertRow(-1);
+    var cellForTopRowScoreDescription = topScoreRow.insertCell();
+    cellForTopRowScoreDescription.innerHTML = "TOTAL SCORE";
+    var cellForTopRowScore = topScoreRow.insertCell();
+    cellForTopRowScore.innerHTML = 0;
+
+    var bonusScoreRow = playingField.insertRow(-1);
+    var cellForBonusScore = bonusScoreRow.insertCell();
+    var topTotalScoreRow = playingField.insertRow(-1);
+    var cellForTotalScore = topTotalScoreRow.insertCell();
     this.getScoreTypeCells("bottom", playingField);
 
 
