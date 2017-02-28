@@ -23,7 +23,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
     };
 
     var processScore = function(score, typeIndex){
-        if(typeIndex <= indexOfScoreTypesBottomScore){
+        if(typeIndex < indexOfScoreTypesBottomScore){
             return processScoreTop(score);
         }
         else{
