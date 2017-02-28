@@ -20,10 +20,6 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
       return Math.floor(Math.random() * max) + min;
     };
 
-//    this.selectInput = function(choice){
-//        scoreChecker.inputDice(dice);
-//        return this["getScoreAs"+choice]();
-//    };
     var processScore = function(score, typeIndex){
         if(typeIndex <= indexOfScoreTypesBottomScore){
             return processScoreTop(score);
@@ -63,7 +59,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
     };
 
     this.selectForReRoll = function(i){
-        //if it's not the reRollPhase or the die has allready been chosen, return empty;
+        //if it's not the reRollPhase or the die has already been chosen, return empty;
         if (!reRollPhase){return}
         else if(reRollDice.indexOf(i)>-1){
             reRollDice.splice(reRollDice.indexOf(i), 1);
