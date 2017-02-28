@@ -1,5 +1,5 @@
 
-function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
+function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTypesBottomScore){
 
     var scoreTypeChecker = [];
     var dice = [0,0,0,0,0];
@@ -7,6 +7,8 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
     var hasRolled = false;
     var reRollPhase = false;
     var reRollDice = [];
+    var totalScoreTop = 0;
+    var totalScoreTopAfterBonus = 0;
 
     function scoreTypeCheckerFiller(){
         for(var i = 0; i < scoreTypes.length; i++){
@@ -22,6 +24,29 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 //        scoreChecker.inputDice(dice);
 //        return this["getScoreAs"+choice]();
 //    };
+    var processScore = function(score, typeIndex){
+        if(typeIndex <= indexOfScoreTypesBottomScore){
+            return processScoreTop(score);
+        }
+        else{
+            return processScoreBottom(score);
+        }
+
+    };
+    var processScoreTop =  function(score){
+        totalScoreTop += score;
+        var bonus = 0;
+        if(totalScoreTop>63){
+            bonus = 35;
+            totalScoreTopAfterBonus = totalScoreTop + bonus;
+        }
+        else{totalScoreTopAfterBonus = totalScoreTop;}
+        visualiser.updateScores(totalScoreTop, bonus, totalScoreTopAfterBonus);
+    };
+
+    var processScoreBottom =  function(score){
+
+    };
 
     this.rollDice = function(){
         if(reRollPhase){return this.reRoll();}
@@ -67,7 +92,8 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
             hasRolled = false;
             var score = this["getScoreAs"+scoreTypes[typeIndex]]();
             visualiser.changeBackToRollButton();
-            return visualiser.addScore(typeIndex, score);
+            visualiser.addScore(typeIndex, score);
+            return processScore(score, typeIndex);
         }
     };
 

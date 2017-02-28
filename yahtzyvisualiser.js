@@ -47,17 +47,20 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     var cellForTopRowScoreDescription = topScoreRow.insertCell();
     cellForTopRowScoreDescription.innerHTML = "TOTAL SCORE";
     var cellForTopRowScore = topScoreRow.insertCell();
+    cellForTopRowScore.id = "cellForTopRowScore"
     cellForTopRowScore.innerHTML = 0;
 
     var bonusScoreRow = playingField.insertRow(-1);
     var cellForBonusScoreDescription = bonusScoreRow.insertCell();
     cellForBonusScoreDescription.innerHTML = "BONUS (total>63)";
     var cellForBonusScore = bonusScoreRow.insertCell();
-    //innerHTML changed when bonus gets triggered.
+    cellForBonusScore.id = "cellForBonusScore";
+
     var topTotalScoreRow = playingField.insertRow(-1);
     var cellForTotalScoreDescription = topTotalScoreRow.insertCell();
     cellForTotalScoreDescription.innerHTML = "TOTAL for top";
     var cellForTotalScore = topTotalScoreRow.insertCell();
+    cellForTotalScore.id = "cellForTotalScore"
     cellForTotalScore.innerHTML = 0;
     this.getScoreTypeCells("bottom", playingField);
 
@@ -102,3 +105,9 @@ Visualiser.prototype.changeBackToRollButton = function(){
 Visualiser.prototype.selectDieForReRoll = function(i, value){
     document.getElementById("die" + i).src = "img/"+(value)+"sel.png";
 };
+Visualiser.prototype.updateScores = function(totalScoreTop, bonus, totalScoreTopAfterBonus){
+    document.getElementById("cellForTopRowScore").innerHTML = totalScoreTop;
+    if(bonus>0){document.getElementById("cellForBonusScore").innerHTML = bonus;};
+    document.getElementById("cellForTotalScore").innerHTML = totalScoreTopAfterBonus;
+
+}
