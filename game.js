@@ -39,7 +39,11 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
     this.selectForReRoll = function(i){
         //if it's not the reRollPhase or the die has allready been chosen, return empty;
-        if (!reRollPhase || reRollDice.indexOf(i)>-1){return};
+        if (!reRollPhase){return}
+        else if(reRollDice.indexOf(i)>-1){
+            reRollDice.splice(reRollDice.indexOf(i), 1);
+            return visualiser.changeDie(i, dice[i]);
+        }
 
         reRollDice.push(i);
         visualiser.selectDieForReRoll(i, dice[i]);
