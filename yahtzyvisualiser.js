@@ -1,5 +1,31 @@
-function Visualiser(){
-
+function Visualiser(indexOfScoreTypesBottomScore, scoreTypes){
+    this.getScoreTypeCells = function(position, playingField){
+        if(position==="top"){
+            whereToStart = 0;
+            whereToEnd = indexOfScoreTypesBottomScore;
+        }
+        else if(position==="bottom"){
+            whereToStart = indexOfScoreTypesBottomScore;
+            whereToEnd = scoreTypes.length;
+        }
+        for(let i = whereToStart; i<whereToEnd; i++){
+        //        var row = playingField.insertRow(-1);
+                var row = document.createElement("tr");
+                row.id = "row"+i;
+                row.className = "success";
+        //        var cellForScoreType = row.insertCell();
+                var cellForScoreType = document.createElement("th");
+                cellForScoreType.innerHTML = scoreTypes[i];
+                cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
+                row.appendChild(cellForScoreType);
+        //        var cellForScore = row.insertCell();
+                var cellForScore = document.createElement("th");
+                cellForScore.innerHTML = 0;
+                cellForScore.id ="score" + i;
+                row.appendChild(cellForScore);
+                playingField.appendChild(row);
+            };
+    };
 
 };
 Visualiser.prototype.createPlayingField = function(scoreTypes){
@@ -21,23 +47,10 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
 
     var playingField = document.createElement("table");
     playingField.class = "table";
-    for(let i = 0; i<scoreTypes.length; i++){
-//        var row = playingField.insertRow(-1);
-        var row = document.createElement("tr");
-        row.id = "row"+i;
-        row.className = "success";
-//        var cellForScoreType = row.insertCell();
-        var cellForScoreType = document.createElement("th");
-        cellForScoreType.innerHTML = scoreTypes[i];
-        cellForScoreType.addEventListener("click", function(){game.getScore(i)},false);
-        row.appendChild(cellForScoreType);
-//        var cellForScore = row.insertCell();
-        var cellForScore = document.createElement("th");
-        cellForScore.innerHTML = 0;
-        cellForScore.id ="score" + i;
-        row.appendChild(cellForScore);
-        playingField.appendChild(row);
-    };
+    this.getScoreTypeCells("top", playingField);
+    this.getScoreTypeCells("bottom", playingField);
+
+
     document.getElementsByTagName("body")[0].appendChild(playingField)
 };
 Visualiser.prototype.inputDice = function(dice){

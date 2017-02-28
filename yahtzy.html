@@ -12,7 +12,8 @@
         function newGame(){
             var playerNames = ["player1", "player2"];
             var scoreTypes = ["Ones","Twos","Threes","Fours","Fives","Sixes","ThreeOfAKind","FourOfAKind","Yahtzy","FullHouse","SmallStraight","LargeStraight","Chance"];
-            var visualiser = new Visualiser();
+            var indexOfScoreTypesBottomScore = 6;
+            var visualiser = new Visualiser(indexOfScoreTypesBottomScore, scoreTypes);
             var scoreChecker = new YahtzyScoreCheck();
             return new YahtzyGame(playerNames, visualiser, scoreChecker, scoreTypes);
 

@@ -134,5 +134,5 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
 
 
     scoreTypeCheckerFiller();
-    visualiser.createPlayingField(scoreTypes);
+    visualiser.createPlayingField();
 }
