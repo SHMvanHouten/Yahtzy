@@ -10,20 +10,14 @@ function Visualiser(indexOfScoreTypesBottomScore, scoreTypes){
         }
         for(let i = whereToStart; i<whereToEnd; i++){
                 var row = playingField.insertRow(-1);
-//                var row = document.createElement("tr");
                 row.id = "row"+i;
                 row.className = "success";
                 row.addEventListener("click", function(){game.getScore(i)},false);
                 var cellForScoreType = row.insertCell();
-//                var cellForScoreType = document.createElement("th");
                 cellForScoreType.innerHTML = scoreTypes[i];
-//                row.appendChild(cellForScoreType);
                 var cellForScore = row.insertCell();
-//                var cellForScore = document.createElement("th");
                 cellForScore.innerHTML = 0;
                 cellForScore.id ="score" + i;
-//                row.appendChild(cellForScore);
-//                playingField.appendChild(row);
             };
     };
 
@@ -56,9 +50,15 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
     cellForTopRowScore.innerHTML = 0;
 
     var bonusScoreRow = playingField.insertRow(-1);
+    var cellForBonusScoreDescription = bonusScoreRow.insertCell();
+    cellForBonusScoreDescription.innerHTML = "BONUS (total>63)";
     var cellForBonusScore = bonusScoreRow.insertCell();
+    //innerHTML changed when bonus gets triggered.
     var topTotalScoreRow = playingField.insertRow(-1);
+    var cellForTotalScoreDescription = topTotalScoreRow.insertCell();
+    cellForTotalScoreDescription.innerHTML = "TOTAL for top";
     var cellForTotalScore = topTotalScoreRow.insertCell();
+    cellForTotalScore.innerHTML = 0;
     this.getScoreTypeCells("bottom", playingField);
 
 
