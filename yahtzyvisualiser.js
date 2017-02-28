@@ -75,3 +75,6 @@ Visualiser.prototype.changeBackToRollButton = function(){
     rollButton.className = "btn btn-success";
     rollButton.innerHTML = "Roll Dice";
 }
+Visualiser.prototype.selectDieForReRoll = function(i, value){
+    document.getElementById("die" + i).src = "img/"+(value)+"sel.png";
+};

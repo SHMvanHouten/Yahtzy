@@ -42,7 +42,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
         if (!reRollPhase || reRollDice.indexOf(i)>-1){return};
 
         reRollDice.push(i);
-//        visualiser.selectDieForReRoll(i);
+        visualiser.selectDieForReRoll(i, dice[i]);
     };
     this.reRoll = function(){
         for(var i = 0; i < reRollDice.length; i++){
@@ -54,6 +54,17 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
         reRollPhase = false;
         reRollDice=[];
         visualiser.removeReRollButton();
+    };
+
+    this.getScore = function(typeIndex){
+        if(scoreTypeChecker[typeIndex]&&hasNotChosenInput){
+            scoreTypeChecker[typeIndex]=false;
+            hasNotChosenInput = false;
+            hasRolled = false;
+            var score = this["getScoreAs"+scoreTypes[typeIndex]]();
+            visualiser.changeBackToRollButton();
+            return visualiser.addScore(typeIndex, score);
+        }
     };
 
     this.getScoreAsThreeOfAKind = function(){
@@ -120,16 +131,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes){
          return scoreChecker.giveAddedUpXs(5);
     };
 
-    this.getScore = function(typeIndex){
-        if(scoreTypeChecker[typeIndex]&&hasNotChosenInput){
-            scoreTypeChecker[typeIndex]=false;
-            hasNotChosenInput = false;
-            hasRolled = false;
-            var score = this["getScoreAs"+scoreTypes[typeIndex]]();
-            visualiser.changeBackToRollButton();
-            return visualiser.addScore(typeIndex, score);
-        }
-    };
+
 
     scoreTypeCheckerFiller();
     visualiser.createPlayingField(scoreTypes);
