@@ -51,7 +51,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
             //6 and 1 being the highest and lowest possible die value
             dice[i] = getRandomInt(6,1);
         };
-        scoreChecker.inputDice(dice);
+//        scoreChecker.inputDice(dice);
         visualiser.inputDice(dice);
         hasRolled = true;
         reRollPhase = true;
@@ -78,6 +78,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
         hasNotChosenInput = true;
         reRollPhase = false;
         reRollDice=[];
+        scoreChecker.inputDice(dice);
         visualiser.removeReRollButton();
     };
 
@@ -105,7 +106,7 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
     };
     this.getScoreAsFullHouse = function() {
          if (scoreChecker.isFullHouse()){
-                return 25 , scoreChecker.addScoreBottomHalf(25);
+                return 25 ;
             }
             else {
                 return 0;

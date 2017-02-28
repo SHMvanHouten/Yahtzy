@@ -45,7 +45,6 @@ function YahtzyScoreCheck() {
     };
     this.isFullHouse = function(){
         var eyeCounter = countTheEyes();
-
         return (eyeCounter.indexOf(2) > 0) && (eyeCounter.indexOf(3) > 0);
 
     };
@@ -101,14 +100,7 @@ function YahtzyScoreCheck() {
 		}
 	};
 	
-	this.addScoreBottomHalf =  function(scoretoadd){
-		totalScoreBottomHalf = totalScoreBottomHalf = scoretoadd;
-		return totalScoreBottomHalf;
-	};
-	
-	this.getScoreBottomHalf = function() {
-		return totalScoreBottomHalf;
-	};
+
 	this.inputDice = function(diceInput){
 	    dice = diceInput.sort();
 	};
