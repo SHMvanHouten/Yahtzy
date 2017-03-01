@@ -67,6 +67,16 @@ function YahtzyGame(names, visualiser, scoreChecker, scoreTypes, indexOfScoreTyp
         visualiser.addReRollButton();
     };
 
+    this.cheatRollDice = function(input){
+        if(reRollPhase){return this.reRoll();}
+        else if(hasRolled){return};
+        dice = input;
+        visualiser.inputDice(dice);
+        hasRolled = true;
+        reRollPhase = true;
+        visualiser.addReRollButton();
+    };
+
     this.selectForReRoll = function(i){
         //if it's not the reRollPhase or the die has already been chosen, return empty;
         if (!reRollPhase){return}
