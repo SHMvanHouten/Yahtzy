@@ -21,8 +21,22 @@ function Visualiser(indexOfScoreTypesBottomScore, scoreTypes){
             };
     };
 
+    this.getScoringCells = function(playingField, description, id){
+        for(var i = 0; i < description.length; i++){
+            var scoreRow = playingField.insertRow(-1);
+            var scoreCellDescription = scoreRow.insertCell();
+            scoreCellDescription.innerHTML = description[i];
+            var scoreCell = scoreRow.insertCell();
+            scoreCell.id = id[i];
+            scoreCell.innerHTML = 0;
+        };
+
+    };
+
 };
 Visualiser.prototype.createPlayingField = function(scoreTypes){
+    var body = document.getElementsByTagName("body")[0];
+
     var diceField =  document.createElement("div");
     var rollButton = document.createElement("button");
     rollButton.id = "rollButton";
@@ -37,56 +51,20 @@ Visualiser.prototype.createPlayingField = function(scoreTypes){
         diceField.appendChild(die);
         die.addEventListener("click",function(){game.selectForReRoll(i);},false)
     };
-    document.getElementsByTagName("body")[0].appendChild(diceField);
+    body.appendChild(diceField);
 
     var playingField = document.createElement("table");
     playingField.class = "table";
+
     this.getScoreTypeCells("top", playingField);
 
-    var topScoreRow = playingField.insertRow(-1);
-    var cellForTopRowScoreDescription = topScoreRow.insertCell();
-    cellForTopRowScoreDescription.innerHTML = "TOTAL";
-    var cellForTopRowScore = topScoreRow.insertCell();
-    cellForTopRowScore.id = "cellForTopRowScore"
-    cellForTopRowScore.innerHTML = 0;
-
-    var bonusScoreRow = playingField.insertRow(-1);
-    var cellForBonusScoreDescription = bonusScoreRow.insertCell();
-    cellForBonusScoreDescription.innerHTML = "BONUS (total>63)";
-    var cellForBonusScore = bonusScoreRow.insertCell();
-    cellForBonusScore.id = "cellForBonusScore";
-
-    var topTotalScoreRow = playingField.insertRow(-1);
-    var cellForTotalScoreDescription = topTotalScoreRow.insertCell();
-    cellForTotalScoreDescription.innerHTML = "TOTAL for top";
-    var cellForTotalScore = topTotalScoreRow.insertCell();
-    cellForTotalScore.id = "cellForTotalScoreTop"
-    cellForTotalScore.innerHTML = 0;
+    this.getScoringCells(playingField, ["TOTAL", "BONUS (total>63)", "TOTAL for top"], ["cellForTopRowScore", "cellForBonusScore", "cellForTotalScoreTop"]);
 
     this.getScoreTypeCells("bottom", playingField);
 
-    var topScoreAtBottom = playingField.insertRow(-1);
-    var cellForTopScoreAtBottomDescription = topScoreAtBottom.insertCell();
-    cellForTopScoreAtBottomDescription.innerHTML = "TOTAL top";
-    var cellForTopScoreAtBottom = topScoreAtBottom.insertCell();
-    cellForTopScoreAtBottom.id = "cellForTopScoreAtBottom"
-    cellForTopScoreAtBottom.innerHTML = 0;
+    this.getScoringCells(playingField, ["TOTAL top", "TOTAL BOTTOM", "TOTAL SCORE"], ["cellForTopScoreAtBottom", "cellForBottomScore", "cellForTotalScore"])
 
-    var bottomScore = playingField.insertRow(-1);
-    var cellForBottomScoreDescription = bottomScore.insertCell();
-    cellForBottomScoreDescription.innerHTML = "TOTAL bottom";
-    var cellForBottomScore = bottomScore.insertCell();
-    cellForBottomScore.id = "cellForBottomScore";
-    cellForBottomScore.innerHTML = 0;
-
-    var totalScore = playingField.insertRow(-1);
-    var cellForTotalScoreDescription = totalScore.insertCell();
-    cellForTotalScoreDescription.innerHTML = "TOTAL SCORE";
-    var cellForTotalScore = totalScore.insertCell();
-    cellForTotalScore.id = "cellForTotalScore";
-    cellForTotalScore.innerHTML = 0;
-
-    document.getElementsByTagName("body")[0].appendChild(playingField)
+    body.appendChild(playingField)
 };
 Visualiser.prototype.inputDice = function(dice){
     for (let i = 0; i<dice.length; i++){
