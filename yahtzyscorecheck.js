@@ -2,8 +2,7 @@
 function YahtzyScoreCheck() {
     var dice;
 
-	var totalScoreBottomHalf = 0;
-	
+
     var contains = function(x) {
         return dice.indexOf(x) >= 0;
     };
@@ -25,9 +24,7 @@ function YahtzyScoreCheck() {
         }
         return false;
     };
-    var getFullHouseScore = function(){
 
-    };
     this.getDice = function() {
         return dice
     };
@@ -81,7 +78,7 @@ function YahtzyScoreCheck() {
 		var diceTotal = 0;
 			for (var i = 0; i < dice.length; i++){
 			diceTotal = diceTotal + dice[i];			
-			};
+			}
 		return diceTotal;
 	};
 	
@@ -104,7 +101,7 @@ function YahtzyScoreCheck() {
 	this.inputDice = function(diceInput){
 	    dice = diceInput.sort();
 	};
-};
+}
 
 YahtzyScoreCheck.prototype.showDice = function() {
     return this.getDice();
@@ -175,9 +172,6 @@ YahtzyScoreCheck.prototype.showDice = function() {
 //};
 YahtzyScoreCheck.prototype.checkForIncorrectInput = function() {
 	 return this.checkForWrongNumbers();
-};
-YahtzyScoreCheck.prototype.showScoreBottomHalf = function() {
-	 return this.getScoreBottomHalf();
 };
 
 
